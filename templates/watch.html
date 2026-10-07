@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Movie</title>
+</head>
+<body style="background:black; color:white; text-align:center;">
+
+<h1>Now Playing</h1>
+
+<video width="900" controls autoplay>
+    <source src="{{ url_for('static', filename='videos/Biker.mp4') }}"
+            type="video/mp4">
+</video>
+
+</body>
+</html>

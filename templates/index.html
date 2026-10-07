@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>rMirror</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Splash Screen -->
+
+<div id="splash">
+    <div class="overlay">
+        <h1 class="logo">rMirror</h1>
+        <p class="tagline">REFLECTING ENTERTAINMENT</p>
+
+    <div class="loader">
+        <div class="progress"></div>
+    </div>
+
+    <p class="loading">LOADING...</p>
+</div>
+
+</div>
+
+<!-- Main Content -->
+
+<div id="main-content">
+
+<header>
+
+    <div class="nav-buttons">
+       <button class="home-btn" onclick="showHome()">
+    🏠 Home
+</button>
+        </a>
+    </div>
+
+    <div class="top-right">
+
+        {% if username %}
+
+     <div class="user-profile">
+
+    <button class="user-btn" onclick="toggleProfile()">
+        👤 {{ username }}
+    </button>
+
+    <div id="profileDropdown" class="dropdown">
+
+        <h3>User Profile</h3>
+
+        <p><strong>Name:</strong> {{ username }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+
+        <a href="/logout">
+            <button class="logout-btn">Logout</button>
+        </a>
+
+    </div>
+
+</div>
+
+        {% else %}
+
+        <a href="/login">
+            <button class="login-btn">Login</button>
+        </a>
+
+        <a href="/register">
+            <button class="register-btn">Register</button>
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</header>
+
+<div id="home-content">
+
+    <h1 class="welcome">Welcome to rMirror</h1>
+
+<nav class="navbar">
+
+    <h2 class="logo-text">rMirror</h2>
+
+    <div class="nav-menu">
+
+        <button class="nav-btn" onclick="showHome()">
+            Home
+        </button>
+
+        <button class="nav-btn" onclick="showAllMovies()">
+            Movies
+        </button>
+
+        <button class="nav-btn" onclick="showTVShows()">
+            TV Shows
+        </button>
+
+        <button class="nav-btn" onclick="showMyList()">
+            My List
+        </button>
+
+    </div>
+
+</nav>
+
+<div class="hero-banner">
+    <div class="hero-content">
+        <h1>Biker</h1>
+        <p>Action • Thriller • Adventure</p>
+
+        <a href="/watch/1">
+    <button class="play-btn">▶ Play</button>
+</a>
+        <button class="info-btn">ℹ More Info</button>
+    </div>
+</div>
+
+ <h2 class="section-title">Continue Watching</h2>
+
+<div class="continue-watching">
+
+{% for movie in continue_movies %}
+
+<div class="continue-card">
+    <h3>{{ movie[1] }}</h3>
+
+    <a href="/watch/{{ movie[0] }}">
+        <button>Continue</button>
+    </a>
+</div>
+
+{% endfor %}
+
+</div>
+
+<h2 class="row-title">Trending Now</h2>
+
+<div class="movie-row">
+
+    <div class="movie-card">
+        <a href="/watch/1">
+            <img src="{{ url_for('static', filename='images/Biker.jpg.jpg') }}">
+        </a>
+    </div>
+
+    
+    <div class="movie-card">
+        <img src="{{ url_for('static', filename='images/Salaar-Cease Fire.jpg') }}">
+    </div>
+
+    
+    <div class="movie-card">
+        <img src="{{ url_for('static', filename='images/Fight Club.jpg') }}">
+    </div>
+
+
+
+    <div class="movie-card">
+        <img src="{{ url_for('static', filename='images/Peaky Blinders-The Immortal Man.jpg') }}">
+    </div>
+
+</div>
+
+</div>
+
+<div class="platform-buttons">
+
+    <button class="platform-btn netflix-btn"
+            onclick="showPlatform('Netflix')">
+        <img src="{{ url_for('static', filename='images/Netflix.png') }}"
+             alt="Netflix">
+    </button>
+
+    <button class="platform-btn prime-btn"
+            onclick="showPlatform('Prime Video')">
+        <img src="{{ url_for('static', filename='images/Prime.png') }}"
+             alt="Prime Video">
+    </button>
+
+    <button class="platform-btn hotstar-btn"
+            onclick="showPlatform('Hotstar')">
+        <img src="{{ url_for('static', filename='images/Hotstar.png') }}"
+             alt="Hotstar">
+    </button>
+
+</div>
+
+<h2 id="platform-title">
+    Select a Platform
+</h2>
+
+<!-- Movies -->
+<div class="movies">
+
+    <div class="card netflix">
+        <img src="{{ url_for('static', filename='images/Biker.jpg.jpg') }}" alt="Biker">
+        <h3>Biker</h3>
+
+      <a href="/watch/1">
+    <button>Watch Now</button>
+</a>
+    </div>
+
+     <div class="card netflix">
+        <img src="{{ url_for('static', filename='images/Peaky Blinders-The Immortal Man.jpg') }}" alt="Peaky Blinders:The Immortal Man">
+        <h3>Peaky Blinders:The Immortal Man</h3>
+        <button>Watch Now</button>
+    </div>
+
+     <div class="card netflix">
+        <img src="{{ url_for('static', filename='images/Salaar-Cease Fire.jpg') }}" alt="Salaar:Ceasefire">
+        <h3>Salaar:Ceasefire</h3>
+        <button>Watch Now</button>
+    </div>
+
+    <div class="card netflix">
+        <img src="{{ url_for('static', filename='images/Kara.jpg.jfif') }}" alt="Kara">
+        <h3>Kara</h3>
+        <button>Watch Now</button>
+    </div>
+
+    <div class="card prime">
+        <img src="{{ url_for('static', filename='images/Dacoit.jfif') }}" alt="Dacoit">
+        <h3>Dacoit</h3>
+        <button>Watch Now</button>
+    </div>
+
+     <div class="card prime">
+        <img src="{{ url_for('static', filename='images/Project Hail Mary.jfif') }}" alt="Project Hail Mary">
+        <h3>Project Hail Mary</h3>
+        <button>Watch Now</button>
+    </div>
+
+     <div class="card prime">
+        <img src="{{ url_for('static', filename='images/Marty Supreme.jfif') }}" alt="Marty Supreme">
+        <h3>Marty Supreme</h3>
+        <button>Watch Now</button>
+    </div>
+
+    <div class="card prime">
+        <img src="{{ url_for('static', filename='images/Kalki 2898AD.jpg') }}" alt="Kalki 2898AD">
+        <h3>Kalki 2898AD</h3>
+        <button>Watch Now</button>
+    </div>
+
+     <div class="card hotstar">
+        <img src="{{ url_for('static', filename='images/Fight Club.jpg') }}" alt="Fight Club">
+        <h3>Fight Club</h3>
+        <button>Watch Now</button>
+    </div>
+
+    <div class="card hotstar">
+        <img src="{{ url_for('static', filename='images/Janatha Garage.jpg') }}" alt="Janatha Garage">
+        <h3>Janatha Garage</h3>
+        <button>Watch Now</button>
+    </div>
+
+     <div class="card hotstar">
+        <img src="{{ url_for('static', filename='images/Sinners.jfif') }}" alt="Sinners">
+        <h3>Sinners</h3>
+        <button>Watch Now</button>
+    </div>
+
+    <div class="card hotstar">
+        <img src="{{ url_for('static', filename='images/Dhurandar part-2.jpeg') }}" alt="Dhurandar Part-2">
+        <h3>Dhurandar Part-2</h3>
+        <button>Watch Now</button>
+    </div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

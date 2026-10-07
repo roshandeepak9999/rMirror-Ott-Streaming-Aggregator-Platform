@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rMirror Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>rMirror</h1>
+    <h2>Welcome Back</h2>
+
+    <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <p>Don't have an account?</p>
+
+    <a href="/register">
+        <button class="register-btn">Register</button>
+    </a>
+</div>
+
+</body>
+</html>
